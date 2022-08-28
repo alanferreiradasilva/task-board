@@ -1,0 +1,52 @@
+<button 
+    #btnOpenModal
+    type="button" 
+    class="btn btn-primary float-end" 
+    data-bs-toggle="modal" 
+    data-bs-target="#newTaskModal"
+    (click)="resetForm()">
+    <i class="bi bi-plus-circle"></i>
+    Nova Tarefa
+</button>
+  
+<!-- Modal -->
+<form [formGroup]="form">
+    <div class="modal fade" id="newTaskModal" tabindex="-1" aria-labelledby="newTaskModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="newTaskModalLabel">
+                New Task
+              </h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <input type="hidden" formControlName="id">
+                    <input type="hidden" formControlName="lista">
+
+                    <div class="col-md-12 form-group">
+                        <label class="label">Título</label>
+                    </div>
+                    <div class="col-md-12 form-group">
+                        <input type="text" class="form-control" formControlName="titulo">
+                    </div>
+    
+                    <div class="col-md-12 form-group mt-2">
+                        <label class="label">Conteúdo</label>
+                    </div>
+                    <div class="col-md-12 form-group">
+                        <textarea class="form-control" formControlName="conteudo">
+    
+                        </textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" (click)="save()">Save</button>
+            </div>
+          </div>
+        </div>
+    </div>
+</form>

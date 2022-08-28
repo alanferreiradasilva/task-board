@@ -1,0 +1,116 @@
+<div class="card col-md-12 mb-2">
+    <div class="card-body">
+
+        <div *ngIf="!isEditMode; else elseTemplate" >
+            <div class="row">
+                <div class="col-md-8">
+                    <h5 class="card-title text-muted">
+                        {{ model.titulo }}
+                    </h5>
+                </div>
+                <div class="col-md-4">
+                    <button class="btn btn-sm btn-success float-end me-1"
+                        [hidden]="model.lista == states[2]"
+                        (click)="newState(states[2])"
+                    >
+                        Done
+                    </button>
+                    <button class="btn btn-sm btn-primary float-end me-1"
+                        [hidden]="model.lista == states[1]"
+                        (click)="newState(states[1])"
+                    >
+                        Doing
+                    </button>
+                    <button class="btn btn-sm btn-light float-end"
+                        [hidden]="model.lista == states[0]"
+                        (click)="newState(states[0])"
+                    >
+                        To Do
+                    </button>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <h5 class="card-title">Conteúdo</h5>
+                </div>
+                <div class="col-md-12">
+                    <p>
+                        {{ model.conteudo }}
+                    </p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <button class="btn btn-sm btn-danger float-end"
+                        [disabled]="isEditMode"
+                        (click)="delete(model.id)"
+                    >
+                        <i class="bi bi-trash-fill"></i>                                
+                    </button>
+                    <button class="btn btn-sm btn-primary float-end me-1"
+                        [disabled]="isEditMode"
+                        (click)="isEditMode = true"
+                    >
+                        <i class="bi bi-pencil-square"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <ng-template #elseTemplate>
+            <form [formGroup]="form">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h5 class="card-title text-muted">
+                            Título
+                        </h5>                            
+                    </div>
+                    
+                    <input type="hidden" formControlName="id" />
+    
+                    <div class="col-md-8">
+                        <input type="text" class="form-control form-control-sm" formControlName="titulo">
+                    </div>
+                    <div class="col-md-4">
+                        <select class="form-select-sm form-select" formControlName="lista" 
+                            (click)="changeState($event)">
+                            <option *ngFor="let state of states" 
+                                [value]="state"
+                                [selected]="state==title"
+                                >{{ state }}</option>
+                        </select>
+                    </div>
+                </div>
+    
+                <div class="row mt-1">
+                    <div class="col-md-12">
+                        <h5 class="card-title text-muted">Conteúdo</h5>
+                    </div>
+                    <div class="col-md-12">
+                        <textarea class="form-control form-control-sm" formControlName="conteudo">    
+                        </textarea>
+                    </div>
+                </div>
+    
+                <div class="row mt-1">
+                    <div class="col-md-12">
+                        <button class="btn btn-sm btn-success float-end ms-1"
+                            (click)="save()"
+                        >
+                            <i class="bi bi-check"></i>
+                            Save
+                        </button>
+                        <button class="btn btn-sm btn-light float-end"
+                            (click)="undo()"
+                        >
+                            <i class="bi bi-arrow-counterclockwise"></i>
+                            Cancelar
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </ng-template>
+    </div>
+</div>

@@ -1,0 +1,49 @@
+<div class="container-fluid container-margin mt-5">
+    <div class="row ms-2 me-2">
+        <div class="card col-md 12">
+            <div class="card-body">
+            
+                <div class="row">
+                    <div class="col-md-10">
+                        <h5 class="card-title">Task board</h5>
+                    </div>
+                    <div class="col-md-2">
+                        <app-task-card-modal></app-task-card-modal>
+                    </div>
+                </div>
+            
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="ms-2 me-2">
+                            <h5 class="display-6 text-center">To Do</h5>
+                        
+                            <div class="row" *ngFor="let item of todoList, let i = index;">
+                                <app-task-card title="To Do" [model]="item"></app-task-card>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="ms-2 me-2">
+                            <h5 class="display-6 text-center">Doing</h5>
+                        
+                            <div class="row" *ngFor="let item of doingList, let i = index;">
+                                <app-task-card title="Doing" [model]="item"></app-task-card>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="ms-2 me-2">
+                            <h5 class="display-6 text-center">Done</h5>
+                        
+                            <div class="row" *ngFor="let item of doneList, let i = index;">
+                                <app-task-card title="Done" [model]="item"></app-task-card>
+                            </div>
+                        </div>
+                    </div>
+                </div>  
+            </div>
+        </div>
+    </div>
+</div>
