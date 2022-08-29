@@ -17,6 +17,7 @@ Abrir o diretório do projeto BACKEND no teminal e executar o comando
 > dotnet run
 ```
 
+A API estará disponível em https://localhost:7001/swagger
 
 ## Rodando o FRONTEND
 
@@ -27,3 +28,5 @@ Abrir o diretório do projeto FRONT no teminal e executar o comando
 > npm install
 > npm start
 ```
+
+A página web estará disponível em http://localhost:4200/
